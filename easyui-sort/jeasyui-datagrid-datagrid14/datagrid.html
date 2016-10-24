@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery EasyUI</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+	<script>
+		/*var data = {"total":28,"rows":[
+			{"date":"03/04/2010","unitcost":10.00,"status":"P","listprice":16.50,"attr1":"Large","itemid":"EST-1"},
+			{"date":"05/04/2009","unitcost":12.00,"status":"P","listprice":18.50,"attr1":"Spotted Adult Female","itemid":"EST-10"},
+			{"date":"12/31/2005","unitcost":12.00,"status":"P","listprice":18.50,"attr1":"Venomless","itemid":"EST-11"},
+			{"date":"03/21/2010","unitcost":12.00,"status":"P","listprice":18.50,"attr1":"Rattleless","itemid":"EST-12"},
+			{"date":"03/06/2003","unitcost":12.00,"status":"P","listprice":18.50,"attr1":"Green Adult","itemid":"EST-13"},
+			{"date":"07/04/2010","unitcost":12.00,"status":"P","listprice":58.50,"attr1":"Tailless","itemid":"EST-14"},
+			{"date":"11/04/2005","unitcost":12.00,"status":"P","listprice":23.50,"attr1":"With tail","itemid":"EST-15"},
+			{"date":"03/23/2010","unitcost":12.00,"status":"P","listprice":93.50,"attr1":"Adult Female","itemid":"EST-16"},
+			{"date":"03/04/2008","unitcost":12.00,"status":"P","listprice":93.50,"attr1":"Adult Male","itemid":"EST-17"},
+			{"date":"03/04/2006","unitcost":92.00,"status":"P","listprice":193.50,"attr1":"Adult Male","itemid":"EST-18"}
+		]};*/
+		$(function(){
+			$('#tt').datagrid({
+				title:'Custom Sort',
+				iconCls:'icon-ok',
+				width:520,
+				height:250,
+				singleSelect:true,
+				remoteSort:false,
+				columns:[[
+					{field:'itemid',title:'Item ID',width:60,sortable:true},
+					{field:'listprice',title:'List Price',width:70,align:'right',sortable:true},
+					{field:'unitcost',title:'Unit Cost',width:70,align:'right',sortable:true},
+					{field:'attr1',title:'Attribute',width:120,sortable:true},
+					{field:'date',title:'Date',width:80,sortable:true,align:'center',
+						sorter:function(a,b){
+							a = a.split('/');
+							b = b.split('/');
+							if (a[2] == b[2]){
+								if (a[0] == b[0]){
+									return (a[1]>b[1]?1:-1);
+								} else {
+									return (a[0]>b[0]?1:-1);
+								}
+							} else {
+								return (a[2]>b[2]?1:-1);
+							}
+						}
+					},
+					{field:'status',title:'Status',width:40,align:'center'}
+				]]
+			});
+		});
+		// sorter  为自写方法   
+		//按大小排序 sorter:function(a,b){
+				      //   a=Number(a);
+				      //   b=Number(b);
+				      //   return (a>b?1:-1);
+				      // }
+	</script>
+</head>
+<body>
+<table id="tt">
+	<tbody>
+	<tr id="datagrid-row-r1-2-0" datagrid-row-index="0" class="datagrid-row ">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-1
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				16.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				10
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Large
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/04/2010
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-1" datagrid-row-index="1" class="datagrid-row ">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-10
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				18.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Spotted Adult Female
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				05/04/2009
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-2" datagrid-row-index="2" class="datagrid-row ">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-11
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				18.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Venomless
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				12/31/2005
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-3" datagrid-row-index="3" class="datagrid-row">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-12
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				18.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Rattleless
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/21/2010
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-4" datagrid-row-index="4" class="datagrid-row">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-13
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				18.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Green Adult
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/06/2003
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-5" datagrid-row-index="5" class="datagrid-row">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-14
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				58.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Tailless
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				07/04/2010
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-6" datagrid-row-index="6" class="datagrid-row">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-15
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				23.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				With tail
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				11/04/2005
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-7" datagrid-row-index="7" class="datagrid-row">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-16
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				93.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				120
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Adult Female
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/23/2010
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-8" datagrid-row-index="8" class="datagrid-row ">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-17
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				93.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				12
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Adult Male
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/04/2008
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	<tr id="datagrid-row-r1-2-9" datagrid-row-index="9" class="datagrid-row ">
+		<td field="itemid">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-itemid">
+				EST-18
+			</div>
+		</td>
+		<td field="listprice">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-listprice">
+				193.5
+			</div>
+		</td>
+		<td field="unitcost">
+			<div style="text-align:right;height:auto;" class="datagrid-cell datagrid-cell-c1-unitcost">
+				92
+			</div>
+		</td>
+		<td field="attr1">
+			<div style="height:auto;" class="datagrid-cell datagrid-cell-c1-attr1">
+				Adult Male
+			</div>
+		</td>
+		<td field="date">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-date">
+				03/04/2006
+			</div>
+		</td>
+		<td field="status">
+			<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-status">
+				P
+			</div>
+		</td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>

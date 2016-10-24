@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="zh-CN">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=gbk" />
+<script type='text/javascript' src='jquery.js'></script>
+<script type='text/javascript' src='sfilter.js'></script>
+<link rel="stylesheet" href='sfilter.css' type="text/css" />
+<title>jQuery插件-“可筛选下拉框”-SFilter</title>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$("#test").sfilter();
+}
+);
+
+
+//-->
+</script>
+</head>
+<body>
+<table width=100% cellspacing=1 cellpadding=20  bgcolor='#6699FF'>
+	<tr bgcolor='#ffffff'>
+		<th>
+			<h1>jQuery插件-“可筛选下拉框”-SFilter</h1>
+		</th>
+	</tr>
+	<tr bgcolor='#ffffff'>
+		<th>======== 演示 ================ DEMO ========</th>
+	</tr>
+	<tr bgcolor='#ffffff'>
+		<td>
+
+			<select id="test">
+				<option value="0">所有品牌</option>
+				<option value='70' >A　ABC</option>
+				<option value='191' >A　安泰</option>
+				<option value='428' >A　安吉尔</option>
+				<option value='122' >A　安可</option>
+				<option value='327' >A　爱宁</option>
+
+				<option value='117' >A　ACTTO安尚</option>
+				<option value='335' >A　艾力斯特</option>
+				<option value='245' >A　安琪纽特</option>
+				<option value='53' >A　安儿乐</option>
+				<option value='54' >A　爱得利</option>
+				<option value='144' >A　爱仕达</option>
+
+				<option value='387' >A　ASUS 华硕</option>
+				<option value='386' >A　Apple 苹果</option>
+				<option value='385' >A　Acer宏碁</option>
+				<option value='190' >A　爱佳宝</option>
+				<option value='189' >A　艾妮</option>
+				<option value='37' >A　澳贝</option>
+
+				<option value='111' >A　ANNA SUI安娜苏</option>
+				<option value='436' >A　爱护</option>
+				<option value='109' >A　adidas</option>
+				<option value='290' >A　洗手液</option>
+				<option value='25' >A　澳优</option>
+				<option value='431' >A　艾美特</option>
+
+				<option value='78' >A　艾贝</option>
+				<option value='105' >B　碧欧泉</option>
+				<option value='412' >B　贝贝鸭</option>
+				<option value='244' >B　宝枫</option>
+				<option value='76' >B　比卡诺</option>
+				<option value='308' >B　百益康</option>
+
+				<option value='130' >B　白大夫</option>
+				<option value='275' >B　百威</option>
+				<option value='281' >B　宝育堂</option>
+				<option value='297' >B　贝优</option>
+				<option value='274' >B　邦宝</option>
+				<option value='87' >B　百利威</option>
+
+				<option value='310' >B　抱抱熊</option>
+				<option value='292' >B　贝比拉比</option>
+				<option value='336' >B　BH</option>
+				<option value='337' >B　北大荒</option>
+				<option value='343' >B　波特庄园</option>
+				<option value='196' >B　贝贝利安</option>
+
+				<option value='74' >B　贝彤</option>
+				<option value='62' >B　倍得适</option>
+				<option value='44' >B　贝因美</option>
+				<option value='193' >B　邦比乐儿</option>
+				<option value='48' >B　帮宝适</option>
+				<option value='417' >B　玻璃鸟</option>
+
+				<option value='192' >B　佰莱氏</option>
+				<option value='194' >B　宝宝金水</option>
+				<option value='195' >B　宝贝可爱</option>
+				<option value='197' >B　贝贝亲</option>
+				<option value='164' >B　百立乐</option>
+				<option value='159' >B　比亲</option>
+
+				<option value='465' >B　宝贝第一</option>
+				<option value='181' >B　宝彩</option>
+				<option value='463' >B　比士尼</option>
+				<option value='448' >B　芭玛雅娜</option>
+				<option value='447' >B　贝蓓乐</option>
+				<option value='31' >B　贝亲</option>
+
+				<option value='198' >B　贝儿欣</option>
+				<option value='56' >B　百乐麦</option>
+				<option value='123' >C　茶花</option>
+				<option value='430' >C　灿坤</option>
+				<option value='432' >C　CASIO</option>
+				<option value='427' >C　Canon 佳能</option>
+
+				<option value='199' >C　聪明谷</option>
+				<option value='225' >C　宠乐</option>
+				<option value='264' >C　超音速</option>
+				<option value='58' >C　菜娃</option>
+				<option value='367' >C　创维</option>
+				<option value='131' >C　采幽</option>
+
+				<option value='118' >D　大人的科学</option>
+				<option value='200' >D　迪孚</option>
+				<option value='261' >D　雕牌</option>
+				<option value='140' >D　丹妮奇特</option>
+				<option value='188' >D　大王</option>
+				<option value='149' >D　DZ</option>
+
+				<option value='238' >D　哆啦A梦</option>
+				<option value='113' >D　大卫杜夫</option>
+				<option value='114' >D　迪奥</option>
+				<option value='158' >D　多比兔</option>
+				<option value='133' >D　大达</option>
+				<option value='287' >D　东菱</option>
+
+				<option value='293' >D　袋鼠仔仔</option>
+				<option value='352' >D　地佰益</option>
+				<option value='353' >D　东禾</option>
+				<option value='365' >D　读乐尔</option>
+				<option value='39' >D　迪士尼</option>
+				<option value='359' >D　帝辰</option>
+
+				<option value='311' >D　多普达</option>
+				<option value='96' >D　蝶妆</option>
+				<option value='69' >D　丹麦嗳呵</option>
+				<option value='304' >D　动漫火车</option>
+				<option value='67' >D　大卫</option>
+				<option value='103' >D　丁家宜</option>
+
+				<option value='26' >D　多美滋</option>
+				<option value='302' >D　袋鼠宝宝</option>
+				<option value='229' >E　ellemommy</option>
+				<option value='128' >E　娥佩兰</option>
+				<option value='201' >F　福施福</option>
+				<option value='235' >F　法克曼</option>
+
+				<option value='65' >F　法雅诗蒂</option>
+				<option value='256' >F　福厚庆长</option>
+				<option value='354' >F　非我莫黍</option>
+				<option value='50' >F　菲比</option>
+				<option value='179' >F　孚日洁玉</option>
+				<option value='185' >F　方广</option>
+
+				<option value='283' >F　芳益</option>
+				<option value='38' >F　费雪</option>
+				<option value='314' >F　飞利浦</option>
+				<option value='322' >F　FIDO DIDO</option>
+				<option value='421' >F　凡爱</option>
+				<option value='328' >F　梵纪喜</option>
+
+				<option value='46' >F　飞鹤</option>
+				<option value='399' >G　归一</option>
+				<option value='176' >G　关山莎能</option>
+				<option value='377' >G　格兰仕</option>
+				<option value='388' >G　Gateway</option>
+				<option value='172' >G　格兰宝</option>
+
+				<option value='424' >G　Gree 格力</option>
+				<option value='152' >G　GUND泰迪熊</option>
+				<option value='202' >G　谷雨</option>
+				<option value='99' >G　高丝</option>
+				<option value='338' >G　高山堂</option>
+				<option value='141' >G　格朗</option>
+
+				<option value='360' >G　光照人</option>
+				<option value='112' >G　高田贤三</option>
+				<option value='286' >G　钙尔奇</option>
+				<option value='315' >H　华为</option>
+				<option value='282' >H　好妻子</option>
+				<option value='452' >H　好孕世界</option>
+
+				<option value='187' >H　和光堂</option>
+				<option value='203' >H　汉臣氏</option>
+				<option value='298' >H　弘正</option>
+				<option value='288' >H　霍尼韦尔</option>
+				<option value='173' >H　皇室宝贝</option>
+				<option value='429' >H　海尔</option>
+
+				<option value='426' >H　HiVi 惠威</option>
+				<option value='204' >H　华亨</option>
+				<option value='253' >H　好娃娃</option>
+				<option value='205' >H　汇乐</option>
+				<option value='355' >H　寒稻夫</option>
+				<option value='389' >H　HP 惠普</option>
+
+				<option value='398' >H　禾然</option>
+				<option value='467' >H　惠步舒</option>
+				<option value='258' >H　好神拖</option>
+				<option value='332' >H　护贝佳</option>
+				<option value='325' >H　恒环牌</option>
+				<option value='437' >H　好外婆</option>
+
+				<option value='119' >H　合生元</option>
+				<option value='162' >H　孩儿面</option>
+				<option value='49' >H　好奇</option>
+				<option value='147' >H　辉煌</option>
+				<option value='55' >H　亨氏</option>
+				<option value='59' >H　汇力多</option>
+
+				<option value='63' >H　黄色小鸭</option>
+				<option value='82' >H　好孩子</option>
+				<option value='120' >H　海王</option>
+				<option value='125' >H　宏邦</option>
+				<option value='171' >H　好友生活馆</option>
+				<option value='27' >H　惠氏</option>
+
+				<option value='169' >H　皇室</option>
+				<option value='316' >I　INTEX</option>
+				<option value='319' >J　嘉宝</option>
+				<option value='320' >J　洁丽克</option>
+				<option value='329' >J　嘉华妈妈</option>
+				<option value='396' >J　娇爽</option>
+
+				<option value='330' >J　洁适兰</option>
+				<option value='206' >J　金贝利</option>
+				<option value='207' >J　金盾</option>
+				<option value='208' >J　金箍棒</option>
+				<option value='239' >J　居邦</option>
+				<option value='151' >J　佳洁利</option>
+
+				<option value='344' >J　均衡小站</option>
+				<option value='95' >J　佳雪</option>
+				<option value='361' >J　金稳安心</option>
+				<option value='370' >J　杰伟世</option>
+				<option value='182' >J　金龙鱼</option>
+				<option value='299' >J　金星</option>
+
+				<option value='303' >J　JIN JIAN</option>
+				<option value='257' >J　吉列</option>
+				<option value='376' >J　九阳</option>
+				<option value='161' >J　今生宝贝</option>
+				<option value='255' >J　劲得钙</option>
+				<option value='180' >J　金奇仕</option>
+
+				<option value='138' >K　可儿</option>
+				<option value='77' >K　卡米卡玛</option>
+				<option value='75' >K　可爱洛彼</option>
+				<option value='231' >K　康贝</option>
+				<option value='342' >K　康源</option>
+				<option value='135' >K　酷奇</option>
+
+				<option value='466' >K　酷比熊</option>
+				<option value='97' >K　卡尼尔</option>
+				<option value='129' >K　可伶可俐</option>
+				<option value='108' >K　卡姿兰</option>
+				<option value='272' >K　康佳</option>
+				<option value='254' >K　康馨儿</option>
+
+				<option value='366' >K　科技出版社</option>
+				<option value='434' >K　凯仕达</option>
+				<option value='160' >K　开丽</option>
+				<option value='178' >K　康麦</option>
+				<option value='184' >K　开米</option>
+				<option value='457' >K　康纳斯顿</option>
+
+				<option value='369' >K　柯达</option>
+				<option value='51' >K　开阳</option>
+				<option value='397' >K　卡比龙</option>
+				<option value='88' >L　丽宝健</option>
+				<option value='403' >L　蓝滴儿</option>
+				<option value='410' >L　龙升源</option>
+
+				<option value='324' >L　乳加力</option>
+				<option value='295' >L　乐儿宝</option>
+				<option value='392' >L　ThinkPad（联想）</option>
+				<option value='102' >L　露得清</option>
+				<option value='409' >L　柳毛河</option>
+				<option value='98' >L　兰芝</option>
+
+				<option value='259' >L　乐亿多</option>
+				<option value='262' >L　乐婴元</option>
+				<option value='163' >L　立顿</option>
+				<option value='300' >L　乐婴</option>
+				<option value='362' >L　六甲村</option>
+				<option value='226' >L　蓝色企鹅</option>
+
+				<option value='73' >L　良良</option>
+				<option value='276' >L　蓝蜻蜓</option>
+				<option value='116' >L　乐扣</option>
+				<option value='321' >L　丽温</option>
+				<option value='348' >L　利多</option>
+				<option value='356' >L　老区人</option>
+
+				<option value='236' >L　龙卷风</option>
+				<option value='85' >L　拉拉布书</option>
+				<option value='210' >L　绿蜻蜓</option>
+				<option value='209' >L　蓝色时光</option>
+				<option value='296' >M　魔笔小良</option>
+				<option value='440' >M　美龙</option>
+
+				<option value='29' >M　蒙牛</option>
+				<option value='106' >M　美宝莲</option>
+				<option value='294' >M　没康雅</option>
+				<option value='289' >M　美康雅</option>
+				<option value='439' >M　曼波鱼屋</option>
+				<option value='384' >M　MSI 微星</option>
+
+				<option value='60' >M　每伴</option>
+				<option value='456' >M　美心</option>
+				<option value='79' >M　mamalove</option>
+				<option value='345' >M　摩尔农庄</option>
+				<option value='381' >M　美的</option>
+				<option value='86' >M　木马</option>
+
+				<option value='285' >M　妈妈宝宝</option>
+				<option value='30' >M　妈咪宝贝</option>
+				<option value='94' >M　曼秀雷敦</option>
+				<option value='23' >M　美赞臣</option>
+				<option value='438' >M　曼葆</option>
+				<option value='453' >M　美丽健</option>
+
+				<option value='449' >M　满庭欢</option>
+				<option value='363' >M　妈妈咪呀</option>
+				<option value='278' >M　民间工艺</option>
+				<option value='153' >M　美素</option>
+				<option value='230' >M　美德乐</option>
+				<option value='183' >M　麦王</option>
+
+				<option value='137' >M　木玩世家</option>
+				<option value='233' >M　美易添</option>
+				<option value='249' >M　马博士</option>
+				<option value='212' >M　米奇</option>
+				<option value='211' >M　美可高特</option>
+				<option value='156' >M　明一</option>
+
+				<option value='306' >N　纽曼斯</option>
+				<option value='383' >N　诺基亚</option>
+				<option value='214' >N　诺比</option>
+				<option value='177' >N　纽贝斯特</option>
+				<option value='247' >N　南京弓箭</option>
+				<option value='213' >N　农心</option>
+
+				<option value='32' >N　NUK</option>
+				<option value='175' >N　南海岸</option>
+				<option value='93' >N　妮维雅</option>
+				<option value='340' >N　诺敏山</option>
+				<option value='372' >O　欧达</option>
+				<option value='91' >O　欧珀莱</option>
+
+				<option value='89' >O　欧姆龙</option>
+				<option value='107' >O　欧莱雅</option>
+				<option value='271' >O　欧润芙</option>
+				<option value='459' >P　品利</option>
+				<option value='92' >P　旁氏</option>
+				<option value='333' >P　品客</option>
+
+				<option value='382' >P　苹果</option>
+				<option value='234' >P　品维</option>
+				<option value='237' >P　派宁</option>
+				<option value='45' >Q　雀巢</option>
+				<option value='462' >Q　启慧</option>
+				<option value='364' >Q　清风</option>
+
+				<option value='419' >Q　奇特小将</option>
+				<option value='414' >Q　七喜鸟</option>
+				<option value='36' >Q　强生</option>
+				<option value='215' >Q　全元康</option>
+				<option value='404' >Q　亲民</option>
+				<option value='346' >Q　清谷新禾</option>
+
+				<option value='168' >Q　巧虎</option>
+				<option value='136' >Q　奇智奇思</option>
+				<option value='291' >Q　亲亲我</option>
+				<option value='435' >Q　琪贝斯</option>
+				<option value='395' >Q　清华同方</option>
+				<option value='150' >R　日华</option>
+
+				<option value='242' >R　瑞鹊</option>
+				<option value='380' >R　容声</option>
+				<option value='216' >R　日康</option>
+				<option value='167' >R　RUSS泰迪熊</option>
+				<option value='284' >R　锐智</option>
+				<option value='390' >S　Samsung 三星</option>
+
+				<option value='441' >S　世纪娃</option>
+				<option value='347' >S　三丰</option>
+				<option value='349' >S　圣鹿</option>
+				<option value='47' >S　三鹿</option>
+				<option value='420' >S　手工艺品</option>
+				<option value='126' >S　施恩</option>
+
+				<option value='263' >S　舒华</option>
+				<option value='312' >S　三星</option>
+				<option value='66' >S　桑纬</option>
+				<option value='415' >S　三太子</option>
+				<option value='358' >S　苏伯</option>
+				<option value='391' >S　Sony 索尼</option>
+
+				<option value='68' >S　三洋</option>
+				<option value='411' >S　生态小镇</option>
+				<option value='418' >S　史努比</option>
+				<option value='378' >S　双超</option>
+				<option value='371' >S　索尼</option>
+				<option value='35' >S　十月天使</option>
+
+				<option value='241' >S　适婴坊</option>
+				<option value='375' >S　沙宣</option>
+				<option value='40' >S　索客</option>
+				<option value='243' >S　生活谷</option>
+				<option value='134' >S　生命阳光</option>
+				<option value='246' >S　舒肤佳</option>
+
+				<option value='41' >S　圣元</option>
+				<option value='334' >S　舒亿康</option>
+				<option value='374' >S　松下</option>
+				<option value='405' >S　四季农场</option>
+				<option value='309' >S　丝塔芙</option>
+				<option value='423' >S　三菱</option>
+
+				<option value='313' >S　索尼爱立信</option>
+				<option value='339' >S　圣山天赐</option>
+				<option value='250' >S　松达</option>
+				<option value='217' >T　天使娃娃</option>
+				<option value='393' >T　Toshiba 东芝</option>
+				<option value='218' >T　婷美</option>
+
+				<option value='219' >T　头头羊</option>
+				<option value='461' >T　童乐城</option>
+				<option value='454' >T　天星</option>
+				<option value='317' >T　Thermale face</option>
+				<option value='240' >T　托马斯</option>
+				<option value='170' >T　天线宝宝</option>
+
+				<option value='80' >T　T.C</option>
+				<option value='228' >T　添香</option>
+				<option value='174' >T　唐贵妃</option>
+				<option value='279' >T　童梦园</option>
+				<option value='394' >V　ViewSonic 优派</option>
+				<option value='269' >W　唯新</option>
+
+				<option value='121' >W　味全</option>
+				<option value='267' >W　维塔卡尼</option>
+				<option value='446' >W　惟青</option>
+				<option value='464' >W　五星</option>
+				<option value='442' >W　温泉宝宝</option>
+				<option value='166' >W　威洁士</option>
+
+				<option value='165' >W　威露士</option>
+				<option value='331' >W　惟爱贝</option>
+				<option value='42' >W　完达山</option>
+				<option value='407' >X　新阳洲</option>
+				<option value='52' >X　嘘嘘乐</option>
+				<option value='460' >X　学之宝</option>
+
+				<option value='401' >X　新林</option>
+				<option value='443' >X　喜天宝</option>
+				<option value='416' >X　小龙人</option>
+				<option value='406' >X　新谷川</option>
+				<option value='408' >X　兴安塔</option>
+				<option value='142' >X　小白熊</option>
+
+				<option value='222' >X　心适贝贝</option>
+				<option value='72' >X　心相印</option>
+				<option value='326' >X　小阿龙</option>
+				<option value='84' >X　星月</option>
+				<option value='260' >X　小淘气</option>
+				<option value='323' >X　鑫宝康</option>
+
+				<option value='81' >X　小龙哈彼</option>
+				<option value='227' >X　旭威</option>
+				<option value='232' >X　小山神</option>
+				<option value='100' >X　相宜本草</option>
+				<option value='220' >X　喜多</option>
+				<option value='305' >X　小乐手</option>
+
+				<option value='368' >X　夏普</option>
+				<option value='280' >X　祥利</option>
+				<option value='277' >X　熊宝宝</option>
+				<option value='273' >X　小天使</option>
+				<option value='61' >X　新安怡</option>
+				<option value='307' >X　旭贝尔</option>
+
+				<option value='357' >X　响水</option>
+				<option value='379' >X　西门子</option>
+				<option value='373' >Y　依立</option>
+				<option value='252' >Y　盈泰</option>
+				<option value='127' >Y　羽西</option>
+				<option value='33' >Y　伊诗比蒂</option>
+
+				<option value='445' >Y　浴怡乐</option>
+				<option value='157' >Y　You&Me 你我他</option>
+				<option value='132' >Y　养生堂</option>
+				<option value='186' >Y　优瑞斯</option>
+				<option value='124' >Y　宜心</option>
+
+				<option value='110' >Y　雅顿</option>
+				<option value='270' >Y　婴姿坊</option>
+				<option value='458' >Y　亿芭利</option>
+				<option value='455' >Y　雅滋美特</option>
+				<option value='265' >Y　优士达</option>
+				<option value='28' >Y　伊利</option>
+
+				<option value='451' >Y　有机园</option>
+				<option value='104' >Y　雅芳</option>
+				<option value='444' >Y　婴悦</option>
+				<option value='301' >Y　婴雪</option>
+				<option value='24' >Y　雅培</option>
+				<option value='251' >Y　优生</option>
+
+				<option value='155' >Y　英吉利</option>
+				<option value='139' >Y　宜家</option>
+				<option value='71' >Y　郁美净</option>
+				<option value='57' >Y　伊威</option>
+				<option value='154' >Y　瀛欣</option>
+				<option value='146' >Y　一帆</option>
+
+				<option value='223' >Y　婴之侣</option>
+				<option value='64' >Y　琪孕儿</option>
+				<option value='351' >Y　伊启棒</option>
+				<option value='350' >Y　云泉</option>
+				<option value='341' >Y　亿百合</option>
+				<option value='318' >Y　婴儿乐</option>
+
+				<option value='433' >Y　源天</option>
+				<option value='34' >Y　宜栖</option>
+				<option value='143' >Y　易简</option>
+				<option value='422' >Y　婴奈儿</option>
+				<option value='90' >Y　玉兰油</option>
+				<option value='43' >Y　雅士利</option>
+
+				<option value='425' >Y　YAMAHA 雅马哈</option>
+				<option value='402' >Y　沂源</option>
+				<option value='145' >Z　竹虎</option>
+				<option value='400' >Z　竹乐</option>
+				<option value='115' >Z　折叠生活</option>
+				<option value='148' >Z　振兴</option>
+
+				<option value='268' >Z　中科</option>
+				<option value='224' >Z　振汉</option>
+				<option value='266' >Z　智灵通</option>
+				<option value='413' >Z　中新</option>
+				<option value='450' >Z　真丝</option>
+				<option value='248' >Z　逐鹿</option>
+
+				<option value='101' >Z　ZA</option>
+			</select>
+
+			<br/><br/>
+			点击上面下拉列表进行选择，可以像普通下拉列表一样进行正常选择，<br/>也可以输入关键词进行筛选后再选择。<br/>使用方法参见本页源代码或使用说明。
+			<br/><br/><br/> 当前有444个选项供选择，如果发现任何BUG或有什么好的建议意见，请告诉小虫，小虫会尽快完善，QQ　93000214
+		</td>
+	</tr>
+	<tr bgcolor='#ffffff'>
+		<td>
+			欢迎使用由<a href='http://www.enjoyphp.com'>虫少侠</a>编写的“可筛选下拉框”jQuery插件。
+		</td>
+	</tr>
+	<tr bgcolor='#ffffff'>
+		<td>
+			使用说明(Introducer)：<a href="http://www.enjoyphp.com/2009/javascript/sfilter-1-0//" >http://www.enjoyphp.com/2009/javascript/sfilter-1-0//</a><br/>
+			作者主页(Roln's Blog)：<a href="http://www.enjoyphp.com">虫少侠的博客</a><br/>
+			下载(DOWNLOAD)：<a href="http://www.enjoyphp.com/sfilter/sfilter.rar">http://www.enjoyphp.com/sfilter/sfilter.rar</a><br/>
+		</td>
+	</tr>
+
+</table>
+</body>
+
+<script language='javascript'>
+
+</script>
+</html>
