@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<style>
+		body { background-color: #000; }
+		canvas { position: fixed; top: 0px; z-index: 2;}
+		/*div { position: fixed; top: 0px; z-index: 1; width: 300px;height:150px}
+		div img {display:block;width: 100%;height: 100%;}*/
+		#cha { z-index:100;position:fixed; top:0;width: 50px; height:50px; background-color: #fff;}
+
+	</style>
+</head>
+<body width="100%" height="100%">
+	<div id="cha"></div>
+	<canvas id="lol" width="1920px" height="1000px"></canvas>
+	<!-- <div><img src="images/QQ图片20150820182039_05.jpg" alt=""></div> -->
+	<script>
+		//圆
+		// var lol = document.getElementById("lol");
+		// var ctx = lol.getContext('2d');
+		// var f=0;
+		// ctx.beginPath();
+		// ctx.arc(100, 100, 5, 0, Math.PI *2, false);
+  //       //不关闭路径路径会一直保留下去，当然也可以利用这个特点做出意想不到的效果
+  //       ctx.closePath();
+  //       ctx.fillStyle = 'yellow';
+  //       ctx.fill();
+		// timer=setInterval(function(){
+		// 	f++;
+		// 	if(f>=20){
+		// 		ctx.clearRect(0,0,1920,1000)
+		// 		f=0;
+		// 	}
+		// 	n= Math.ceil( Math.random()*1000)
+		// 	m= Math.ceil( Math.random()*1920)
+		//     ctx.beginPath();
+		// 	ctx.arc(m, n, 5, 0, Math.PI *2, false);
+	 //        //不关闭路径路径会一直保留下去，当然也可以利用这个特点做出意想不到的效果
+	 //        ctx.closePath();
+	 //        ctx.fillStyle = 'yellow';
+	 //        ctx.fill();
+		// }, 10)
+
+	// 签名
+	var lol = document.getElementById("lol");
+	var ctx = lol.getContext('2d');
+	var q = true;
+	lol.onmousedown=function(e){
+		e = e || window.e;
+		n=e.clientX;
+		m=e.clientY;
+		ctx.beginPath();
+		ctx.moveTo(n,m);
+		lol.onmousemove=function(e){
+		 		e = e || window.e;
+		 		x=e.clientX;
+		 		y=e.clientY;
+		 		if(q){
+				 	ctx.lineTo(x,y);
+				 	ctx.strokeStyle="red";
+				 	ctx.stroke();
+		 		} else {
+		 			ctx.clearRect(x,y,20,20);
+		 		}
+			 }
+	}
+	lol.onmouseup = function(){
+		lol.onmousemove=null;
+	}
+	var cha = document.getElementById("cha");
+	cha.onclick=function(){
+		q=!q;
+	}
+
+
+
+ 
+
+
+
+ //刮刮卡功能   该效果需要把HTML页面上的注释拿掉  给canvas标签内的宽高删除  样式加上width: 300px;height:150px！
+	// scratchCard("lol",10,"#ccc")
+	// function scratchCard(id,n,color){
+	// 	//id为canvas id  n决定每次刮开的范围 n越大刮开范围越大 color颜色
+	// 	var lol = document.getElementById(id);
+	// 	var width = lol.width;
+	// 	var height = lol.height;
+	// 	var ctx = lol.getContext('2d');//获取2d绘图环境
+	// 	ctx.fillStyle=color;//设置颜色
+	// 	ctx.fillRect(0,0, width,height);//填充
+	// 	lol.onmousemove=function(event) {
+	// 		var e= event||window.event;
+	// 		var y=e.clientY-width/n/2;
+	// 		var x=e.clientX-height/n/2;
+	// 		ctx.clearRect(x,y,width/n,height/n)
+	// 	};
+	// }
+
+
+	</script>
+</body>
+</html>

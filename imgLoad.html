@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="imgLoad">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://img02.sogoucdn.com/app/a/100520093/589224918ea7c2ea-e71225ec958a36a3-8ac5edbeb44f59e44e8d99f102fd5a57.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://pic5.bbzhi.com/qichebizhi/mingguiqichebizhi/mingguiqichebizhi_423407_11.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://pic1.win4000.com/wallpaper/b/50b332bf2c17a.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://pic7.nipic.com/20100521/1383578_011117510279_2.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://image.zcool.com.cn/2/46/m_1300798217169.101.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://picm.bbzhi.com/qichebizhi/gaoqingqichebizhi1600x1200/gaoqingqichebizhi1600x1200_382506_m.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://pic4.bbzhi.com/qichebizhi/22cunkuanpingqichezhuomianbizhi/22cunkuanpingqichezhuomianbizhi_405209_10.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://img.cheshi-img.com/sellernews/11400/11486/89b709933c40b64e.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://xm.05927.com/UploadFiles/pic_2008121110263688.jpg" width="1100" height="900">
+    <img src="http://img.zcool.cn/community/01aec95540f1040000005b0375da37.jpg" data-src="http://www.hanlinjy.com/admin/edit/UploadFile/2009812113744779.jpg" width="1100" height="900">
+</div>
+<script>
+/*    var img = document.getElementsByTagName("img");
+    var wHight = window.innerHeight;
+
+    if(document.attachEvent){
+        document.attachEvent('onmousewheel',function(){
+            imgLoad();
+        });
+    }
+    else if(document.addEventListener){
+        document.addEventListener('DOMMouseScroll',imgLoad,false);
+        document.addEventListener('mousewheel',imgLoad);
+    }
+
+    function imgLoad(){
+
+    }*/
+
+function ImgLoad(){
+    var _this = this;
+    this.img = document.getElementsByTagName("img");
+    this.sHeight = 0;
+    this.imgTop = 0;
+    this.imgHeight = 0;
+    this.myAddEvent(document,'mousewheel',function(){
+        _this.imgLoadFn();
+    });
+    this.myAddEvent(document,'DOMMouseScroll',function(){
+        _this.imgLoadFn();
+    });
+    this.imgLoadFn();
+}
+ImgLoad.prototype.imgLoadFn = function(){
+    this.sHeight = document.body.scrollTop;
+    for(var i=0; i< this.img.length; i++){
+        this.imgTop  =  this.img[i].offsetTop;
+        this.imgHeight =  this.img[i].offsetHeight;
+        //alert("imgTop:"+imgTop+",sHeight:"+sHeight);
+        if( this.imgTop >=  this.sHeight && this.imgTop <= this.sHeight + this.imgHeight){
+            //alert(i+":"+img[i].getAttribute("data-src"));
+            // alert(i+":"+img[i].src);
+            this.img[i].src =  this.img[i].getAttribute("data-src");
+        }
+    }
+};
+
+ImgLoad.prototype.myAddEvent = function(obj, sEvent, fn){
+    if(obj.attachEvent)
+    {
+        obj.attachEvent('on'+sEvent, fn);
+    }
+    else
+    {
+        obj.addEventListener(sEvent, fn, false);
+    }
+};
+
+window.onload = function(){
+    var a = new ImgLoad();
+};
+
+
+
+</script>
+</body>
+</html>

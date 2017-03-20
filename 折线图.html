@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+  <meta charset="UTF-8" />
+  <title>xuewu</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+</head>
+<body>
+  <canvas width="700" height="380" id="can"></canvas>
+  <script type="text/javascript">
+      var datas=[10,12,50,22,5];
+      var dataWord = [2016.04,2016.04,2016.04,2016.04,2016.04]
+      var datasMax = datas[0];
+      for(var i = 0; i < datas.length; i++ ){
+        if(datasMax < datas[i]){
+          datasMax = datas[i];
+        }
+      }
+      var con = document.getElementById("can");
+      var context = con.getContext("2d");
+      var contextWidth = con.width;
+      var contextHeight = con.height;
+      var margin = 50;//相当于canvas 的padding
+      var spotDis = (contextWidth-2*margin)/(datas.length-1);//每个点之间的距离
+      var bigLineTop = (contextHeight-2*margin)/5;//每条背景线间的距离
+      var origin = {
+          x: margin,
+          y: contextHeight-margin
+      }
+      var axisX = {
+        x: contextWidth- margin,
+        y: contextHeight-margin
+      }
+      var axisY = {
+        x: margin,
+        y: margin
+      }
+      function drawLine (x,y,x1,y1,color) {
+        context.beginPath();
+        context.moveTo(x,y);
+        context.lineTo(x1,y1);
+        context.strokeStyle = color;
+        context.stroke();
+      }
+      //绘制背景横向坐标
+      for(var i = 0;i < 6; i++) {
+        var lineTop = bigLineTop * i;
+          drawLine(origin.x,origin.y-lineTop,axisX.x,axisX.y-lineTop,'#ddd')  
+      }
+      /**
+       * 文字
+       */
+      function word(size,color,word,x,y) {
+        context.font = size;
+        //设置字体颜色
+        context.fillStyle = color;
+        //从坐标点(50,50)开始绘制文字
+        context.fillText(word, x, y);
+        context.textAlign = 'center'
+      }
+      //绘制圆点
+      function ring (x,y) {
+        context.beginPath()
+        context.fillStyle ="#fff";
+        context.arc(x,y,3*window.devicePixelRatio,0,Math.PI*2);
+        context.fill();
+        context.strokeStyle = '#ffcf5b';
+        context.stroke();
+        context.closePath()
+      }
+      //绘制折线
+      function spotLine() {
+        context.beginPath();
+        for(var i = 0;i < datas.length; i++) {
+          var soptMar = spotDis * i;
+          var spotTop = datas[i]/datasMax*(contextHeight-2*margin)
+          context.lineTo(origin.x + soptMar,origin.y-spotTop);
+          word('20px Arial','#333',datas[i],origin.x + soptMar,origin.y-spotTop-20)
+          word('20px Arial','#666',dataWord[i],origin.x + soptMar-10,origin.y+20)
+        }
+        context.lineWidth = 2*window.devicePixelRatio
+        context.strokeStyle = '#ffcf5b';
+        context.stroke();
+        for(var i = 0;i < datas.length; i++) {
+          var soptMar = spotDis * i;
+          var spotTop = datas[i]/datasMax*(contextHeight-2*margin)
+          ring(origin.x + soptMar,origin.y-spotTop);
+        }
+      }
+      //绘制透明黄色面积
+      function shadow() {
+        context.beginPath();
+        context.moveTo(origin.x,origin.y)
+        for( var i = 0;i < datas.length; i++) {
+          var soptMar = spotDis * i;
+          var spotTop = datas[i]/datasMax*(contextHeight-2*margin)
+          context.lineTo(origin.x + soptMar,origin.y-spotTop);
+        }
+        context.lineTo(origin.x + spotDis * (datas.length-1),origin.y)
+        context.fillStyle="rgba(254,242,214,0.5)"
+        context.fill();
+        context.strokeStyle = 'rgba(254,242,214,0.5)';
+        context.stroke();
+      }
+      shadow();
+      spotLine();
+  </script>
+</body>
+</html>

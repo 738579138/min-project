@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <input type="file" id="pic" style= "width:100px;height: 200px;" placeholder="请选择照片" onchange="transformBase(this.id)" />
+    <img id="main" style="width: auto;height: 500px;">
+    <script type="text/javascript">
+    //  var img = '';
+    // function transformBase(id){
+    //     img = document.getElementById(id).value;
+    //      if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox 
+    //       img = window.URL.createObjectURL(document.getElementById(id).files.item(0)); 
+    //     } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome 
+    //       img = window.URL.createObjectURL(document.getElementById(id).files.item(0)); 
+    //     } 
+    //     var image = new Image();
+    //     image.src = img;
+    //     image.onload = function(){
+    //         var base64 = getBase64Image(image);
+    //         console.log(base64);
+    //          document.getElementById('main').src =base64;
+    //     }
+    // }
+    // function getBase64Image(img) {
+    //     var canvas = document.createElement("canvas");
+    //     canvas.width = img.width;
+    //     canvas.height = img.height;
+    //     var ctx = canvas.getContext("2d");
+    //     ctx.drawImage(img, 0, 0, img.width, img.height);
+    //     var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+    //             var dataURL = canvas.toDataURL("image/"+ext);
+    //     return dataURL;
+    // }
+    function show(dataURL) {
+        document.getElementById('main').src = dataURL;
+    }
+     function transformBase(id){
+        var base64 = new Transform_base__sixfour(id,show);
+     }
+    function Transform_base__sixfour (id,show) {
+        this.img= '';
+        this.img = document.getElementById(id).value;
+         if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox 
+          this.img = window.URL.createObjectURL(document.getElementById(id).files.item(0)); 
+        } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome 
+          this.img = window.URL.createObjectURL(document.getElementById(id).files.item(0)); 
+        }   
+        this.transform(show);
+    }
+    Transform_base__sixfour.prototype.transform = function(show){
+        let image = new Image();
+        image.src = this.img;
+        image.onload = function (){
+            var canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(image, 0, 0, image.width, image.height);
+            var ext = image.src.substring(image.src.lastIndexOf(".")+1).toLowerCase();
+                    var dataURL = canvas.toDataURL("image/"+ext);
+            show(dataURL);
+        }
+    }
+    </script>
+    </body>
+</html>

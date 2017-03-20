@@ -1,0 +1,75 @@
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em{margin:0;padding:0;border:0;}
+ul,ol,li{list-style:none;}
+input,button{margin:0;font-size:12px;vertical-align:middle;}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif; color:#333; margin:0 auto; }
+table{border-collapse:collapse;border-spacing:0;}
+a{ color:#333; text-decoration:none;}
+
+.box-163css{ width:840px; overflow:hidden; height:540px; padding-top:20px; margin:20px auto;}
+#magazine{
+	width:840px;
+	height:520px;
+	position:relative;
+	left:0;
+	opacity:0;	
+	-moz-transition:0.3s left;
+	-webkit-transition:0.3s left;
+	transition:0.3s left;
+}
+
+#magazine .page{
+	width:420px;
+	height:520px;
+	background-color:#ccc;
+	overflow:hidden;
+}
+
+#magazine.centerStart{
+	left:-210px;
+}
+
+#magazine.centerEnd{
+	left:210px;
+}
+
+.page img{
+	height:520px;
+	width:420px;
+	display:block;
+}
+
+.centerStart .turn-page-wrapper:first-child{
+	box-shadow:0 0 10px #040404;
+}
+
+span.pageNum{
+    background-color: rgba(0, 0, 0, 0.3);
+    bottom: 25px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    font-size: 11px;
+    height: 24px;
+    line-height: 22px;
+    opacity: 0.9;
+    position: absolute;
+    text-align: center;
+    width: 55px;
+}
+
+span.pageNum.left{
+	left:0;
+	right:auto;
+}
+
+span.pageNum.right{
+	left:auto;
+	right:0;
+}
+
+#page1 .pageNum{
+	display:none;
+}
+.box01-pic{ width:100%; position:relative;}
+.picimg{ position:absolute; left:0; top:0;}
+.txt{ position:relative; z-index:100;}

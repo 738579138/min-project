@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .drag{width:300px; height:300px; background-color: #ff0000; position: absolute; top:50px; left:50px}
+    </style>
+    <script src="js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div class="drag" id="drag"></div>
+<script>
+    window.onload = function(){
+        var a = new dragObj("drag");
+    };
+
+    function dragObj(id){
+        var _this = this;
+        this.drag = document.getElementById(id);
+        this.speedx = 0;
+        this.speedy = 0;
+        this.timer = null;
+        this.lastX = 0;
+        this.lastY = 0;
+        this.drag.onmousedown = function(ev){
+            var e = ev || event;
+            _this.mouseDown(e,_this);
+        };
+    }
+    dragObj.prototype.mouseDown = function(e,_this){
+        var disCx = e.clientX - this.drag.offsetLeft;
+        var disCy = e.clientY - this.drag.offsetTop;
+
+        document.onmousemove = function(ev){
+            var e = ev || event;
+            _this.mouseMove(e,disCx,disCy,_this);
+        }
+        document.onmouseup = function(){
+            _this.mouseUp(_this);
+        }
+        clearInterval(_this.timer);
+
+    };
+    dragObj.prototype.mouseMove = function(e,disCx,disCy,_this){
+        var l = e.clientX - disCx;
+        var t = e.clientY - disCy;
+        _this.speedx=l-_this.lastX;
+        _this.speedy=t-_this.lastY;
+
+        _this.lastX=l;
+        _this.lastY=t;
+
+        if( l < 0){
+            l = 0;
+        }else if(l > document.documentElement.clientWidth - this.drag.offsetWidth){
+            l = document.documentElement.clientWidth - this.drag.offsetWidth;
+        }
+        if(t < 0){
+            t = 0;
+        }else if( t > document.documentElement.clientHeight - this.drag.offsetHeight){
+            t = document.documentElement.clientHeight - this.drag.offsetHeight;
+        }
+        this.drag.style.left = l + "px";
+        this.drag.style.top = t + "px";
+    };
+    dragObj.prototype.mouseUp = function(_this){
+        document.onmousemove = null;
+        document.onmouseup = null;
+        _this.luoTi(_this);
+    };
+
+    dragObj.prototype.luoTi = function(_this){
+        clearInterval(_this.timer);
+        _this.timer = setInterval(function(){
+            _this.speedx += 3;
+            _this.speedy += 3;
+            var l = _this.drag.offsetLeft + _this.speedx;
+            var t = _this.drag.offsetTop + _this.speedy;
+            if(t>=document.documentElement.clientHeight-_this.drag.offsetHeight)
+            {
+                _this.speedy*=-0.8;
+                _this.speedx*=0.8;
+                t=document.documentElement.clientHeight-_this.drag.offsetHeight;
+            }
+
+            else if(t<=0)
+            {
+                _this.speedy*=-0.8;
+                _this.speedx*=0.8;
+                t=0;
+            }
+
+            if(l>=document.documentElement.clientWidth- _this.drag.offsetWidth)
+            {
+                _this.speedx*=-0.8;
+                l=document.documentElement.clientWidth- _this.drag.offsetWidth;
+            }
+            else if(l<=0)
+            {
+                _this.speedx*=-0.8;
+                l=0;
+            }
+
+            if(Math.abs(_this.speedx)<1)
+            {
+                _this.speedx=0;
+            }
+
+            if(Math.abs(_this.speedy)<1)
+            {
+                _this.speedy=0;
+            }
+
+            if(_this.speedx==0 && _this.speedy==0 && t==document.documentElement.clientHeight- _this.drag.offsetHeight)
+            {
+                clearInterval(_this.timer);
+                alert('停止');
+            }
+            else
+            {
+                 _this.drag.style.left=l+'px';
+                 _this.drag.style.top=t+'px';
+            }
+
+            document.title=_this.speedx;
+
+
+        },30)
+    };
+
+
+
+
+
+
+</script>
+</body>
+</html>

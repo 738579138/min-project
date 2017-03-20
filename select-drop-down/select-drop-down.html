@@ -25,44 +25,97 @@
 
 </head>
 <body>
-	<div class="white all_menu">
-	    <div class="select clearfix">
-		    <span>请选择系统后台:</span>
-		    <dl class="clearfix">
-			    <dt>财务管理后台</dt>
-				<dd>
-					<em class="select-mainland-title">大陆管理后台</em>
-					<div class="select-mainland">
-					    <a href="http://admin.3333.cn" target="_blank">综合管理后台</a>
-					    <a href="http://admina8sdk.3333.cn" target="_blank">A8SDK管理后台</a>
-					    <a href="http://admincsdk.3333.cn" target="_blank">CSDK管理后台</a>
-					    <a href="http://adminad.3333.cn" target="_blank">广告管理后台</a>
-					    <a href="http://project.csdk.3333.cn" target="_blank">项目组管理后台</a>
-					    <a href="http://admincw.3333.cn" target="_blank">财务管理后台</a>
-					</div>
-					<em class="select-mainland-titlex">香港管理后台</em>
-					<div class="select-hland">
-					    <a href="http://admincsdk.hk.3333.cn" target="_blank">CSDK香港管理后台</a>
-					    <a href="http://admincw.hk.3333.cn" target="_blank">财务香港管理后台</a>
-					</div>
-			    </dd>
-		   	</dl>
-	    </div>
-	 </div>
-	 <script src="http://r.3333.cn/common/js/select-backstage.js" type="text/javascript"></script>
-	 <script>
-	 // $(".mainland-title").click(function(event) {
-	 // 	/* Act on the event */
-	 // 	$(".mainland").slideToggle();
-	 // 	$(".Hland").slideUp();
-	 // 	$("#select_input").focus();
-	 // });
-	 // $(".mainland-titlex").click(function(event) {
-	 // 	/* Act on the event */
-	 // 	$(".Hland").slideToggle();
-	 // 	$(".mainland").slideUp();
-	 // 	$("#select_input").focus();
-	 // });
-	 </script>
+  <div class="white all_menu">
+      <div class="select clearfix">
+        <span>请选择系统后台:</span>
+        <dl class="clearfix">
+          <dt>财务管理后台</dt>
+        <dd>
+          <em class="select-mainland-title">大陆管理后台</em>
+          <div class="select-mainland">
+              <a href="http://admin.3333.cn" target="_blank">综合管理后台</a>
+              <a href="http://admina8sdk.3333.cn" target="_blank">A8SDK管理后台</a>
+              <a href="http://admincsdk.3333.cn" target="_blank">CSDK管理后台</a>
+              <a href="http://adminad.3333.cn" target="_blank">广告管理后台</a>
+              <a href="http://project.csdk.3333.cn" target="_blank">项目组管理后台</a>
+              <a href="http://admincw.3333.cn" target="_blank">财务管理后台</a>
+          </div>
+          <em class="select-mainland-titlex">香港管理后台</em>
+          <div class="select-hland">
+              <a href="http://admincsdk.hk.3333.cn" target="_blank">CSDK香港管理后台</a>
+              <a href="http://admincw.hk.3333.cn" target="_blank">财务香港管理后台</a>
+          </div>
+          </dd>
+        </dl>
+      </div>
+   </div>
+   <!-- <script src="http://r.3333.cn/common/js/select-backstage.js" type="text/javascript"></script> -->
+   <script>
+   (function(){
+    //创建input节点并放到body中
+    $("body").append('<input type="text" id="select_input" style="position:fixed; top:-100px;;height:1px;width:1px;">')
+    var n =true;
+    //下拉框头部显示页面头部标题
+    $(".select dt").html($("title").html());
+    //点击出现下拉框
+    $(".select dt").click(function(){
+      $("#select_input").off('blur')
+      $(".select dd").slideToggle();
+      if(n){
+        $(this).css({
+          "background-image": "url('http://r.3333.cn/common/images/down.png')"
+        })
+        n=false;
+      $("#select_input").focus();
+      }else {
+        $(this).css({
+          "background-image": "url('http://r.3333.cn/common/images/up.png')"
+        })
+        n=true;
+      }
+    })
+    //鼠标在下拉框上时候让我们创造的input聚焦
+    $(".select dt,.select dd").on('mouseover',  function(event) {
+       $("#select_input").off('blur');
+       $("#select_input").focus();
+    });
+    //鼠标离开下拉框 调用selectBlur函数
+    $(".select dt,.select dd").on('mouseout',  function(event) {
+      $("#select_input").blur(function(event) {
+        selectBlur();
+      });
+    });
+    //收起下拉框
+    function selectBlur() {
+        $(".select dt").css({
+            "background-image": "url('http://r.3333.cn/common/images/up.png')"
+          })
+          $(".select dd").hide();
+          $(".select-hland").slideUp();
+          $(".select-mainland").slideUp();
+          n=true;
+    }
+    //点击A标签 让下拉列表收起
+    $(".select dl a").click(function(event) {
+      /* Act on the event */
+      selectBlur();
+    });
+    //点击大陆管理后台划出大陆管理后台列表
+    $(".select-mainland-title").click(function(event) {
+    /* Act on the event */
+      $(".select-mainland").slideToggle();
+      $(".select-hland").slideUp();
+      $("#select_input").focus();
+   });
+    //点击香港管理后台划出香港管理后台列表
+   $(".select-mainland-titlex").click(function(event) {
+    /* Act on the event */
+      $(".select-hland").slideToggle();
+      $(".select-mainland").slideUp();
+      $("#select_input").focus();
+   });
+
+  })();
+   </script>
 </body>
 </html>
