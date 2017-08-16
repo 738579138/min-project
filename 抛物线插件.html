@@ -1,0 +1,154 @@
+<html><head>
+      <script id="jquery_183" type="text/javascript" class="library" src="/js/sandbox/jquery/jquery-1.8.3.min.js"></script>
+    </head>
+    <body>
+    <style>
+            h1:hover{
+                color:blue;
+            }
+        .target,.origin,.task-guide,.parabola-el,.origin1{
+            position: absolute;
+            background-color: red;
+            width: 20px;
+            height:20px;
+            border-radius: 50%;
+        }
+        .task-guide{
+            background-color: blue;
+        }
+        .target{
+            position: absolute;
+            left: 600px;
+            top:300px;
+        }
+        .origin{
+            position: absolute;
+            left: 10px;
+            top: 300px;
+            background-color: blue;
+        }
+        .parabola-el{
+            top: -1000px;
+            background-color: green;
+        }
+        .origin1 {
+            position: absolute;
+            left: 10px;
+            top: 100px;
+            background-color: #000; 
+        }
+    </style>
+        <h1>
+            点击空白处触发抛物线  
+        </h1>
+    <div class="target"></div>
+    <div class="origin" onclick="onClick(this)"></div>
+    <div class="origin1" onclick="onClick(this)"></div>
+    <script type="text/javascript">
+    var parabola = function(config){
+        var b = 0,
+            INTERVAL = 15,
+            timer = null,
+            x1,y1,x2,y2,originx,originy,diffx,diffy;
+
+        this.config = config || {};
+        // 起点
+        this.origin =  this.config.origin||null;
+        // 终点
+        this.target = document.getElementsByClassName(this.config.target)[0]||null;
+        // 运动的元素
+        this.element = document.getElementsByClassName(this.config.element)[0]||null;
+        // 曲线弧度
+        this.a = this.config.a || 0.002;
+        // 运动时间(ms)
+        this.time = this.config.time || 1000;
+
+        this.init = function(){
+            console.log(this.origin)
+            x1 = this.origin.offsetLeft;
+            y1 = this.origin.offsetTop;
+            x2 = this.target.offsetLeft;
+            y2 = this.target.offsetTop;
+            originx = x1;
+            originy = y1;
+            diffx = x2-x1;
+            diffy = y2-y1,
+            speedx = diffx/this.time;
+
+            // 已知a = 3, 根据抛物线函数 y = a*x*x + b*x + c 将抛物线起点平移到坐标原点[0, 0]，终点随之平移，那么抛物线经过原点[0, 0] 得出c = 0;
+            // 终点平移后得出：y2-y1 = a*(x2 - x1)*(x2 - x1) + b*(x2 - x1)
+            // 即 diffy = a*diffx*diffx + b*diffx;
+            // 可求出常数b的值
+            b = (diffy - this.a*diffx*diffx)/diffx;
+            console.log(x1,y1)
+            this.element.style.left = x1;
+            this.element.style.top = y1;
+            return this;
+        }
+
+        // 确定动画方式
+        this.moveStyle = function(){
+            var moveStyle = 'position',
+                testDiv = document.createElement('div');
+            if('placeholder' in testDiv){
+                ['','ms','moz','webkit'].forEach(function(pre){
+                    var transform = pre + (pre ? 'T' : 't') + 'ransform';
+                    if(transform in testDiv.style){
+                        moveStyle = transform;
+                    }
+                })
+            }
+            return moveStyle;
+        }
+
+        this.move = function(){
+            var start = new Date().getTime(),
+                moveStyle = this.moveStyle(),
+                _this = this;
+            timer = setInterval(function(){
+                if(new Date().getTime() - start > _this.time){
+                    clearInterval(timer);
+                     _this.element.style.left = x2;
+                    _this.element.style.top = y2;
+                    typeof _this.config.callback === 'function' && _this.config.callback(_this.element);
+                    return;
+                }
+                x = speedx * (new Date().getTime() - start);
+                y = _this.a*x*x + b*x;
+                if(moveStyle === 'position'){
+                    _this.element.style.left = x+originx;
+                    _this.element.style.top = y+originy;
+                }else{
+                    if(window.requestAnimationFrame){
+                        window.requestAnimationFrame(_this.element[0].style[moveStyle] = 'translate('+x+'px,'+y+'px)');
+                    }else{
+                        _this.element[0].style[moveStyle] = 'translate('+x+'px,'+y+'px)';
+                    }
+                }
+            },INTERVAL)
+            return this;
+        }
+
+        this.init();
+    }
+
+    function onClick(element){
+        var el = document.createElement('div');
+        el.setAttribute("class","parabola-el")
+        document.body.appendChild(el);
+        new parabola({
+            origin: element,
+            target: 'target',
+            element: 'parabola-el',
+                    time: 1000,
+            callback: function(el){
+                el.remove();
+            }
+        }).move()
+    }
+            // setInterval(function(){
+            //     document.body.onClick()
+            // },1500)
+    </script>
+<!--Generated by RunJS (Wed Aug 16 11:21:52 CST 2017) 2ms -->
+</body></html>
